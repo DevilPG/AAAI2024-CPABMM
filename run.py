@@ -18,7 +18,6 @@ from train import train
 from train_avd import train_avd
 from reconstruction import reconstruction
 
-# os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 
 if __name__ == "__main__":
 
