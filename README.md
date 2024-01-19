@@ -22,64 +22,45 @@ This work has been accepted by AAAI 2024.
 
 
 ### Examples of video reconstruction and image animation
-![image](imgs/image_recon_comp.pdf)
-![image](imgs/main_comp_new.pdf)
+![image](imgs/recon_comp.png)
+![image](imgs/animation_comp.png)
 
 
-## Training Step
-
-### (0) Prepare
-Data prepare: download the [CelebA](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) dataset or [ImageNet](https://image-net.org) dataset
-
-Dependencies:
+## Installation
+Please run the project in ```python3``` environment.
+To install the dependencies run:
+```bash
+pip install -r requirements.txt
 ```
-pip install torch==1.6.0
+## Configuration
+Configuration files are in the `config` folder, one for each `dataset`, named as ```config/dataset_name.yaml```.
+
+## Datasets
+Follow [TPSMM](https://github.com/yoyo-nb/Thin-Plate-Spline-Motion-Model)
+
+## Training
+To train a model on specific dataset run:
 ```
-
-### (1) Train the stroke renderer
-
-
-To train the neural stroke renderer, you can run the following code
-```
-python3 compositor/train_renderer_FCN.py
-```
-
-### (2) Train the painter network
-
-After the neural renderer is trained, you can train the painter network by:
-```
-$ cd painter
-$ python3 train.py
+python run.py --config config/dataset_name.yaml --log_dir dir_to_save_log_files --tag id_for_training_task
 ```
 
-### (3) Train the compositor network
-
-With the trained stroke renderer and painter network, you can train the compositor network by:
+### Training AVD network
+To train a model on specific dataset run:
 ```
-$ cd compositor
-$ python3 train.py --dataset=path_to_your_dataset
+python run.py --mode train_avd --checkpoint '{checkpoint_folder}/checkpoint.pth.tar' --config config/dataset_name.yaml
 ```
 
-## Testing Step
-
-### Image to painting
-After all the training steps are finished, you can paint an image by:
+## Evaluation on video reconstruction
+To evaluate the model on video reconstruction task run:
 ```
-$ cd compositor
-$ python3 test.py --img_path=path_to_your_test_img --stroke_num=number_of_strokes
+CUDA_VISIBLE_DEVICES=0 python run.py --mode reconstruction --config config/dataset_name.yaml --checkpoint '{checkpoint_folder}/checkpoint.pth.tar'
 ```
+To compute quantitative metrics, please follow instructions from [pose-evaluation](https://github.com/AliaksandrSiarohin/pose-evaluation).
 
-If you want to save the painting process as a video, you can use ```--video```.
-
-If the painted results are not so good, you can try different painting mode by ```--mode=2``` or ```--mode=3```.
-
-### Test the DT loss
-
-We provide the differentiable distance transform code in compositor/DT.py, you can have a test by:
-
-```
-$ cd compositor
-$ python3 DT.py --img_path=path_to_your_test_img
+## Image animation demo
+To generate a animation video with a source image and a driving video run:
+```bash
+python demo.py --config config/dataset_name.yaml --checkpoint {checkpoint_folder}/checkpoint.pth.tar --source_image path_to_source_img --driving_video path_to_driving_video
 ```
 
 ## Citation
