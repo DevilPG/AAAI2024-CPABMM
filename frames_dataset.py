@@ -41,24 +41,11 @@ def read_video(name, frame_shape):
         video_array = np.moveaxis(video_array, 1, 2)
     elif name.lower().endswith('.gif') or name.lower().endswith('.mp4') or name.lower().endswith('.mov'):
         video = mimread(name, memtest=False)
-        # print('--------------------------------', flush=True)
-        # print(name, flush=True)
-        # for frame in video:
-        #     print(frame.shape, flush=True)
-        # for frame in video:
-        #     if len(frame.shape)==2:
-        #         frame = gray2rgb(frame)
-
         if len(video[0].shape) == 2:
             video = [gray2rgb(frame) for frame in video if len(frame.shape)==2]
         if frame_shape is not None:
             video = np.array([resize(frame, frame_shape) for frame in video])
-        
-        # try:
-        # print('--------------------------------', flush=True)
-        # for frame in video:
-        #     print(frame.shape, flush=True)
-        # print('--------------------------------', flush=True)    
+          
         try:
             video = np.array(video)
         except:
@@ -69,10 +56,6 @@ def read_video(name, frame_shape):
         if video.shape[-1] == 4:
             video = video[..., :3]
         video_array = img_as_float32(video)
-        # except:
-        #     print(name)
-        #     for frame in video:
-        #         print(frame.shape) 
         
     else:
         raise Exception("Unknown file extensions  %s" % name)
