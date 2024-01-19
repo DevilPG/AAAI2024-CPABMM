@@ -38,7 +38,6 @@ def reconstruction(config, inpainting_network, kp_detector, bg_predictor, dense_
         bg_predictor.eval()
 
     for it, x in tqdm(enumerate(dataloader)):
-        # with torch.no_grad():
         predictions = []
         visualizations = []
         if torch.cuda.is_available():
@@ -51,10 +50,7 @@ def reconstruction(config, inpainting_network, kp_detector, bg_predictor, dense_
             bg_params = None
             if bg_predictor:
                 bg_params = bg_predictor(source, driving)
-            
-            # dense_motion = dense_motion_network(source_image=source, kp_driving=kp_driving,
-            #                                     kp_source=kp_source, bg_param = bg_params, 
-            #                                     dropout_flag = False, retain_graph = False)
+                
             dense_motion = dense_motion_network(source_image=source, kp_driving=kp_driving,
                                                 kp_source=kp_source, bg_param = bg_params, 
                                                 dropout_flag = False)
@@ -70,17 +66,10 @@ def reconstruction(config, inpainting_network, kp_detector, bg_predictor, dense_
             loss = torch.abs(out['prediction'] - driving).mean().cpu().detach().numpy()
             
             loss_list.append(loss)
-        # print(np.mean(loss_list))
         try:
             imageio.mimsave(os.path.join(mp4_dir, x['name'][0] + '.mp4'), [img_as_ubyte(frame) for frame in predictions], fps=15)
         except:
-            # print(loss_list)
-            # for frame in predictions:
-            #     # print()
-            #     print(frame.min(), frame.max())
             imageio.mimsave(os.path.join(mp4_dir, x['name'][0] + '.mp4'), [img_as_ubyte(np.clip(frame,0,1)) for frame in predictions], fps=15)
             print(x['name'])
-        # predictions = np.concatenate(predictions, axis=1)
-        # imageio.imsave(os.path.join(png_dir, x['name'][0] + '.png'), (255 * predictions).astype(np.uint8))
 
     print("Reconstruction loss: %s" % np.mean(loss_list))
