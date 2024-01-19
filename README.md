@@ -68,10 +68,10 @@ python demo.py --config config/dataset_name.yaml --checkpoint {checkpoint_folder
 If you find this code helpful for your research, please cite:
 
 ```
-@inproceedings{hu2023stroke,
-      title={Stroke-based Neural Painting and Stylization with Dynamically Predicted Painting Region}, 
-      author={Teng Hu and Ran Yi and Haokun Zhu and Liang Liu and Jinlong Peng and Yabiao Wang and Chengjie Wang and Lizhuang Ma},
-      booktitle={Proceedings of the 30th ACM International Conference on Multimedia},
-      year={2023}
-      }
+@article{wang2024cpabmm,
+  title={Continuous Piecewise-Affine Based Motion Model for Image Animation},
+  author={Hexiang Wang and Fengqi Liu and Qianyu Zhou and Ran Yi and Xin Tan and Lizhuang Ma},
+  journal={arXiv preprint arXiv:2401.09146},
+  year={2024}
+}
 ```
