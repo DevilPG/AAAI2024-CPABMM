@@ -10,34 +10,20 @@
  and [Lizhuang Ma](https://dmcv.sjtu.edu.cn/) 
 <!-- <br> -->
 
-![image](imgs/framework.jpg)
+![image](imgs/framework.png)
 
 ## Introduction
 
 ### Abstract
->Stroke-based rendering aims to recreate an image with a set of strokes. Most existing methods render complex images using an uniform-block-dividing strategy, which leads to boundary inconsistency artifacts. To solve the problem, we propose Compositional Neural Painter, a novel stroke-based rendering framework which dynamically predicts the next painting region based on the current canvas, instead of dividing the image plane uniformly into painting regions. We start from an empty canvas and divide the painting process into several steps. At each step, a compositor network trained with a phasic RL strategy first predicts the next painting region, then a painter network trained with a WGAN discriminator predicts stroke parameters, and a stroke renderer paints the strokes onto the painting region of the current canvas. Moreover, we extend our method to stroke-based style transfer with a novel differentiable distance transform loss, which helps preserve the structure of the input image during stroke-based stylization. Extensive experiments show our model outperforms the existing models in both stroke-based neural painting and stroke-based stylization.
+>Image animation aims to bring static images to life according to driving videos and create engaging visual content that can be used for various purposes such as animation, entertainment, and education. Recent unsupervised methods utilize affine and thin-plate spline transformations based on keypoints to transfer the motion in driving frames to the source image. However, limited by the expressive power of the transformations used, these methods always produce poor results when the gap between the motion in the driving frame and the source image is large. To address this issue, we propose to model motion from the source image to the driving frame in highly-expressive diffeomorphism spaces. Firstly, we introduce Continuous Piecewise-Affine based (CPAB) transformation to model the motion and present a well-designed inference algorithm to generate CPAB transformation from control keypoints. Secondly, we propose a SAM-guided keypoint semantic loss to further constrain the keypoint extraction process and improve the semantic consistency between the corresponding keypoints on the source and driving images. Finally, we design a structure alignment loss to align the structure-related features extracted from driving and generated images, thus helping the generator generate results
+that are more consistent with the driving action. Extensive experiments on four datasets demonstrate the effectiveness of our method against state-of-the-art competitors quantitatively and qualitatively. 
 
-This work has been accepted by ACM MM 2023. 
+This work has been accepted by AAAI 2024. 
 
-### The Boundary Inconsistency Problem in Existing Works
-![image](imgs/boundary%20inconsistency.jpg)
 
-### Demos
-<div class="half">
-    <img src="imgs/1.gif" width="180"><img src="imgs/2.gif" width="180"><img src="imgs/3.gif" width="180"><img src="imgs/4.gif" width="180">
-</div>
-<div class="half">
-    <img src="imgs/5.gif" width="180"><img src="imgs/6.gif" width="180"><img src="imgs/7.gif" width="180"><img src="imgs/8.gif" width="180">
-</div>
-
-## Todo (Latest update: 2023/10/16)
-- [x] **Release the training code
-- [x] **Release the pretrained model
-
-## Pretrained Models
-The pretrained models can be downloaded from [Google Cloud](https://drive.google.com/drive/folders/1MFa7RNEREvn8nsLWmwmYpy_EUGpGbztt?usp=sharing) and [百度网盘](https://pan.baidu.com/s/11to0MHjXqzxJU89rqFAHiA) (提取码：0306)
-
-You can put painter.pkl under painter/checkpoints, compositor.pkl under compositor/checkpoints and renderer-oil.pkl under the main folder.
+### Examples of video reconstruction and image animation
+![image](imgs/image_recon_comp.pdf)
+![image](imgs/main_comp_new.pdf)
 
 
 ## Training Step
