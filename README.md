@@ -26,6 +26,12 @@ This work has been accepted by AAAI 2024.
 
 
 ## Installation
+Clone this project in recursive mode:
+```bash
+git clone --recursive https://github.com/DevilPG/AAAI2024-CPABMM.git
+```
+For detailed information about the CPAB transformation library, please refer to [libcpab](https://github.com/SkafteNicki/libcpab.git).
+
 Please run the project in ```python3``` environment.
 To install the dependencies run:
 ```bash
@@ -35,7 +41,7 @@ pip install -r requirements.txt
 Configuration files are in the `config` folder, one for each `dataset`, named as ```config/dataset_name.yaml```.
 
 ## Datasets
-Follow [TPSMM](https://github.com/yoyo-nb/Thin-Plate-Spline-Motion-Model)
+For detailed information of four datasets used in this paper, please follow [TPSMM](https://github.com/yoyo-nb/Thin-Plate-Spline-Motion-Model).
 
 ## Training
 To train a model on specific dataset run:
