@@ -22,7 +22,7 @@ This work has been accepted by AAAI 2024.
 
 
 ### Examples of video reconstruction and image animation
-![image](imgs/recon_comp.png)
+![image](imgs/recon_comp.png){:height="50%" width="50%"}
 ![image](imgs/animation_comp.png)
 
 
