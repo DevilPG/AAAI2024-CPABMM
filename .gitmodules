@@ -1,0 +1,3 @@
+[submodule "libcpab"]
+	path = libcpab
+	url = https://github.com/SkafteNicki/libcpab.git
