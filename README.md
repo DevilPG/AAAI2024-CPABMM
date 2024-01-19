@@ -21,9 +21,7 @@ that are more consistent with the driving action. Extensive experiments on four 
 This work has been accepted by AAAI 2024. 
 
 
-### Examples of video reconstruction and image animation
-<img src="imgs/recon_comp.png" style="zoom:50%" />
-![image](imgs/recon_comp.png)
+### Examples of image animation
 ![image](imgs/animation_comp.png)
 
 
